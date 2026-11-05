@@ -1,0 +1,55 @@
+site_name: FedRAMP 20x Review Guide (Unofficial)
+site_description: Unofficial reviewer guide for FedRAMP 20x Class A, B, and C Certification Packages.
+site_url: https://gillooleyj.github.io/fedramp-20x-review/
+repo_url: https://github.com/gillooleyj/fedramp-20x-review
+repo_name: gillooleyj/fedramp-20x-review
+edit_uri: ""
+docs_dir: guide
+exclude_docs: |
+  README.md
+copyright: Not an official FedRAMP or GSA product. Rule text comes from the FedRAMP Consolidated Rules for 2026.
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - content.code.copy
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+
+plugins:
+  - search
+  - tags
+
+extra:
+  generator: false
+
+nav:
+  - Home: index.md
+  - Guide:
+      - The Assessor's Role: assessor-role.md
+  - Rules by Class:
+      - Class A: reference/class-a.md
+      - Class B: reference/class-b.md
+      - Class C: reference/class-c.md
+      - Differences by Class: reference/class-differences.md
