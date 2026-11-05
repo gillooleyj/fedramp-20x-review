@@ -11,7 +11,7 @@ Depends on: FedRAMP/rules, FedRAMP/schemas, FedRAMP/2026-markdown
 - First guide page drafted: `guide/assessor-role.md`.
 
 ## Next Step
-- Move `setup/*.yml` into `.github/workflows/` and push, which publishes the site and starts the daily update check.
+- Add `mkdocs.yml` and move `setup/*.yml` into `.github/workflows/` (docs/update-process.md), which publishes the site and starts the daily update check.
 - Milestone 2: package intake (load SDR, CPO, OCR; schema validation; coverage both ways).
 
 ## Blockers
@@ -19,4 +19,4 @@ Depends on: FedRAMP/rules, FedRAMP/schemas, FedRAMP/2026-markdown
 
 ## Recent Changes
 - 2026-11-05: Repository created from research and plan.
-- 2026-11-05: Public repository and GitHub Pages site added; sample-derived findings removed from docs/plan.md.
+- 2026-11-05: Public repository gillooleyj/fedramp-20x-review created; Pages set to GitHub Actions; labels created; Actions allowed to open pull requests. Sample-derived findings removed from docs/plan.md.

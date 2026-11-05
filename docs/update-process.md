@@ -38,12 +38,15 @@ FedRAMP moved to a monthly rules release after 2026.11.02.01, usually in the fir
 
 Done when the repository was created: public repository, GitHub Pages set to deploy from GitHub Actions, Actions allowed to create pull requests, and the three labels created.
 
-Remaining step, run once from the repository folder:
+Remaining step. Remote file tools can't write `.github/workflows/` or `mkdocs.yml`, so these three files are added by hand once:
+
+1. Save `mkdocs.yml` (supplied separately) in the repository root.
+2. From the repository folder, run:
 
 ```sh
-mkdir -p .github/workflows && git mv setup/rules-update.yml setup/pages.yml .github/workflows/ && git commit -m "Add update-check and site workflows" && git push
+mkdir -p .github/workflows && git mv setup/rules-update.yml setup/pages.yml .github/workflows/ && git add mkdocs.yml && git commit -m "Add workflows and site config" && git push
 ```
 
-The push publishes the site. Then run **Check FedRAMP upstream updates** once from the Actions tab to confirm it reports "No upstream changes."
+The push publishes the site at https://gillooleyj.github.io/fedramp-20x-review/. Then run **Check FedRAMP upstream updates** once from the Actions tab to confirm it reports "No upstream changes."
 
 Data updates are automatic; changes to meaning always pass through a person.
