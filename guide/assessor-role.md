@@ -12,6 +12,7 @@ rules:
   - FRD-ANA
   - FRD-FRA
   - FRD-IFA
+  - FRD-FPR
   - FRC-CSO-MRA
   - FRC-CLA-ASF
   - FRC-CLA-EAM
@@ -47,17 +48,17 @@ sources:
 
 # The Assessor's Role in a 20x Review
 
-This page explains who assesses what when FedRAMP reviews a FedRAMP 20x Certification Package, and how to check the independent assessor's work. It's for FedRAMP reviewers working Class A, B, and C reviews.
+This page explains who assesses what when FedRAMP reviews a FedRAMP 20x Certification Package, and how to check the independent assessor's work. It's for FedRAMP reviewers on Class A, B, and C reviews.
 
-## Several Parties Assess; FedRAMP Decides
+## Who Does What in a 20x Review
 
 | Party | Role in the review | Basis |
 | --- | --- | --- |
 | Independent assessment service | Performs the bulk of verification and validation, on behalf of FedRAMP, under contract to the provider. Must be FedRAMP Recognized. | FRD-FRA (FedRAMP Recognized); [Independent Assessment Service Responsibilities](https://www.fedramp.gov/2026/responsibilities/assessors/){ data-preview } |
 | FedRAMP | The final assessor for FedRAMP Certification and one of all necessary assessors. Makes the Certification decision. | FRD-ASR (Assessor); FRD-ANA (All Necessary Assessors); FRD-IFA (Initial FedRAMP Assessment) |
 | Alternative framework auditor (Class A only) | Issues the SOC 2 Type II report or equivalent that Class A relies on. This is framework evidence, not a FedRAMP independent assessment. | FRC-CLA-ASF (Approved Alternative Security Frameworks); FRC-CLA-EAM (External Assessment Materials) |
-| Provider | Remains responsible for the accuracy and completeness of everything in the package, including content an assessor supplied. | FRC-CSO-MRA (Maintain Responsibility and Accountability) |
-| Agencies | Decide whether the certified offering fits their use. | [FedRAMP's Responsibilities](https://www.fedramp.gov/2026/responsibilities/fedramp/){ data-preview } |
+| Provider | Verifies and validates its own measures and supplies that evidence to all necessary assessors. Remains responsible for the accuracy and completeness of everything in the package, including content an assessor supplied. | IVV-CSO-SEI (Supply Evidence of Implementation); IVV-CSO-SEE (Supply Evidence of Effectiveness); FRC-CSO-MRA (Maintain Responsibility and Accountability) |
+| Agencies | Decide whether a FedRAMP Certified cloud service offering fits their use. | [FedRAMP's Responsibilities](https://www.fedramp.gov/2026/responsibilities/fedramp/){ data-preview } |
 
 !!! warning "Do not record a framework auditor as the independent assessor!"
     A SOC 2 report is issued in the auditor role, even when the audit firm is also FedRAMP Recognized. For Class A, a FedRAMP independent assessment is a separate, optional engagement under FRC-CLA-IVV (Optional Independent Verification and Validation).
@@ -66,7 +67,7 @@ This page explains who assesses what when FedRAMP reviews a FedRAMP 20x Certific
 
 1. **Verification:** the assessor checks that the measures in place match the measures the provider documented, at a technical level (IVV-IAS-VIM (Verify Implementation)).
 2. **Validation:** the assessor checks that those measures produce the intended outcome (IVV-IAS-VEF (Validate Effectiveness)). Both rules note that reviewing documentation or screenshots alone isn't enough.
-3. **A summary for each FedRAMP practice,** which the provider places in the Security Decision Record (IVV-IAS-SUM (Assessment Summary)). FedRAMP doesn't require a separate Security Assessment Plan or Security Assessment Report.
+3. **A summary for each FedRAMP Practice,** which the provider places in the Security Decision Record (IVV-IAS-SUM (Assessment Summary)). FedRAMP doesn't require a separate Security Assessment Plan or Security Assessment Report.
 4. **An overall summary,** including failures and areas of dispute, which the provider places in the Certification Package Overview (IVV-IAS-OSA (Overall Summary of Assessment); CPO-CSO-OSA (Overall Summary of Assessment in Certification Package)).
 5. **Confirmation that the provider didn't change the meaning** of the assessment when adding it to the package (IVV-IAS-VIP (Verify Inclusion in Certification Package); IVV-CSO-ICP (Inclusion in Certification Package)).
 6. **Deliverables that meet FedRAMP performance standards:** complete on first submission, clear, correctly formatted, on time, accurately tested, independent, and with chain of custody preserved (REC-IAS-PST (Performance Standards)).
@@ -76,8 +77,8 @@ This page explains who assesses what when FedRAMP reviews a FedRAMP 20x Certific
 | Topic | Class A | Class B | Class C |
 | --- | --- | --- | --- |
 | Independent assessment at application | Optional (FRC-CLA-IVV); a framework assessment from the past 12 months is required (FRC-CLA-ASF) | Required, completed within the previous 3 months (FRC-APP-FIA) | Required, completed within the previous 3 months (FRC-APP-FIA) |
-| Stale assessment | Applies only if optional IV&V was performed | May be refreshed by a change review unless it's more than 9 months old (FRC-APP-USA) | Same as Class B |
-| Ongoing assessment | Meets the framework's own expectations (IVV-CSX-AIA) | All applicable rules each year (IVV-CSO-FIA); all KSIs each year (IVV-CSX-AIA) | Same as Class B |
+| Stale assessment | Relevant only when an optional FedRAMP independent assessment was performed (FRC-APP-USA) | May be refreshed by a change review unless it's more than 9 months old (FRC-APP-USA) | Same as Class B |
+| Ongoing assessment | Meets the framework's own expectations (IVV-CSX-AIA) | All applicable rules each year (IVV-CSO-FIA); all Key Security Indicators (KSIs) each year (IVV-CSX-AIA) | Same as Class B |
 | Overall summary in the CPO | Optional | Required | Required |
 
 ## Check the Assessor Before You Read the Assessment
@@ -85,11 +86,20 @@ This page explains who assesses what when FedRAMP reviews a FedRAMP 20x Certific
 1. **Recognition.** Confirm the assessor named in the CPO (`assessor.name`, `assessor.assessorID`) is listed as FedRAMP Recognized in the FedRAMP Marketplace. FedRAMP can't accept attestations from assessors who aren't Recognized (REC-FRP-RAO (Recognized Assessors Only)).
 2. **Independence.** Check the CPO `advisors` list. An assessor can't assess an offering it advised on in the past 2 years (REC-IAS-SEP (Advisory Separation)). The provider, not the assessor, must have applied (FRC-APP-NTP (No Third-Party Applicants)).
 3. **Freshness.** For Class B and C, confirm the assessment finished within 3 months of the application (FRC-APP-FIA).
-4. **Coverage.** Confirm there's an assessment summary for every applicable rule and KSI. FedRAMP's assessor guidance states that each applicable rule must be assessed.
+4. **Coverage.** Confirm there's an assessment summary for every applicable rule and KSI. [FedRAMP's assessor guidance](https://www.fedramp.gov/2026/assessors/fedramp-assessments/){ data-preview } states that each applicable rule must be assessed.
 
 ## Read Each Summary as an Argument
 
-For each rule and KSI, the summary should tell you what was examined and how, what evidence supported the result, what population and period it covered, what counted as failure, where the implementation failed or remains disputed, and what risks matter to a customer.
+For each rule and KSI, the summary should tell you:
+
+- What was examined, and how
+- What evidence supported the result
+- What population and period the testing covered
+- What counted as failure
+- Where the implementation failed, lacked support, or remains disputed
+- What risks or limits matter to a customer
+
+Then test the summary itself:
 
 1. Look for technical testing: queries, configuration data, code review, live demonstrations. A summary built only on policies or screenshots doesn't meet IVV-IAS-VIM.
 2. Treat "Pass" as a label, not a finding. Read the method and scope behind it.
@@ -102,11 +112,11 @@ For each rule and KSI, the summary should tell you what was examined and how, wh
 
 ## When You Disagree With the Assessor
 
-1. **Your determination governs.** FedRAMP is the final assessor, so an assessor's "Pass" doesn't bind the review.
+1. **FedRAMP's determination governs.** FedRAMP is the final assessor (FRD-ASR (Assessor)), so an assessor's "Pass" doesn't bind the review. Bring the disagreement and your evidence to the review team.
 2. **Record both views.** In the review sheet, note the assessor's conclusion and your basis in column O, then set Next Steps by the rule's force.
 3. **Ask for the evidence directly.** Because FedRAMP is one of all necessary assessors, providers must supply evidence of implementation and effectiveness to FedRAMP as well (IVV-CSO-SEI (Supply Evidence of Implementation); IVV-CSO-SEE (Supply Evidence of Effectiveness)), and should supply technical explanations and demonstrations (IVV-CSO-STE (Supply Technical Explanations)).
 4. **Send package fixes to the provider.** The provider stays accountable even when the assessor wrote the content (FRC-CSO-MRA).
-5. **Raise assessment quality separately.** Missing coverage, no technical testing, or unclear deliverables are performance-standards issues under REC-IAS-PST, and FedRAMP can require a corrective action plan (REC-IAS-CAP (Corrective Action Plan)). Route these through Internal Escalation.
+5. **Raise assessment quality separately.** Missing coverage, no technical testing, or unclear deliverables are performance-standards issues under REC-IAS-PST, and FedRAMP can require a corrective action plan (REC-IAS-CAP (Corrective Action Plan)). Raise them with the review team as an internal escalation, separate from the provider's package feedback.
 
 !!! info "Assessor touchpoints for Class B and C"
     The assessor joins the provider walkthrough at the start of the review. Plan for the assessor at the collaborative review when questions turn on how a test was performed.

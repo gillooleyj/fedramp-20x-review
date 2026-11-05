@@ -32,3 +32,9 @@ Append-only. Newest at the bottom.
 - Conditions: Provider packages and package-derived findings stay out of the repository; the site and README state that this is not an official FedRAMP or GSA product; no FedRAMP branding.
 - Rejected: Private repository with GitHub Pro; Vercel.
 - Surface: chat
+
+## 2026-11-05: Site style and voice review
+- Why: Applied the fedramp-site-style `reference` variant (white header, serif headings, ruled tables, monospace identifiers, two-tone focus ring, tabs and breadcrumbs) because the site is rules reference and guidance. Revised content with write-like-fedramp: corrected an overstated SHOULD, attributed the final determination to FedRAMP rather than the individual reviewer, added the provider's own verification and validation role, and split long sentences into lists.
+- Kept: Unofficial labeling in the site name, home page, and footer; no FedRAMP logo or official marks.
+- Rejected: The plum `project` masthead (reads as the official homepage); dropping dark mode (kept with verified contrast).
+- Surface: chat

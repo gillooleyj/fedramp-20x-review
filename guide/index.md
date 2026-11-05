@@ -13,10 +13,15 @@ rules:
   - FRD-MST
   - FRD-SHD
   - FRD-MAY
+  - IVV-CSO-SEI
+  - IVV-CSO-SEE
 sources:
   - responsibilities/fedramp.md
   - agencies/use/classes.md
 ---
+
+Unofficial reviewer guide · FedRAMP 20x Classes A, B, and C
+{: .fr-eyebrow }
 
 # FedRAMP 20x Review Guide
 
@@ -30,8 +35,8 @@ This guide helps FedRAMP reviewers assess FedRAMP 20x Certification Packages for
 1. **FedRAMP doesn't decide whether a service is "secure enough."** A FedRAMP Certification supplies sufficient information, following FedRAMP rules, for agencies to make their own decisions ([FedRAMP's Responsibilities](https://www.fedramp.gov/2026/responsibilities/fedramp/)).
 2. **The package is the essential information an agency uses to decide** whether to authorize the service (FRD-CRP (Certification Package)).
 3. **A Certification Class measures assurance information, not security** (FRD-CCL (Certification Class); [Certification Classes](https://www.fedramp.gov/2026/agencies/use/classes/)).
-4. **FedRAMP is one of all necessary assessors** (FRD-ANA (All Necessary Assessors)), so providers owe reviewers evidence directly.
-5. **Force sets the consequence.** A MUST failure is a vulnerability likely requiring corrective action or denial (FRD-MST (MUST)). A SHOULD departure is allowed only when the decision is documented (FRD-SHD (SHOULD)). A MAY rule is optional, and the decision should still be explained (FRD-MAY (MAY)).
+4. **FedRAMP is one of all necessary assessors** (FRD-ANA (All Necessary Assessors)), so providers owe reviewers evidence of implementation and effectiveness directly (IVV-CSO-SEI (Supply Evidence of Implementation); IVV-CSO-SEE (Supply Evidence of Effectiveness)).
+5. **Force sets the consequence.** A MUST failure is a vulnerability likely requiring corrective action or denial (FRD-MST (MUST)). A SHOULD rule allows a departure for a valid reason once the implications are weighed, and the decision must be documented (FRD-SHD (SHOULD)). A MAY rule is optional, and the decision should still be explained (FRD-MAY (MAY)).
 
 For every rule and KSI, ask whether the package gives an agency accurate, current, and sufficient information under the class rules, and whether the evidence supports the claim.
 

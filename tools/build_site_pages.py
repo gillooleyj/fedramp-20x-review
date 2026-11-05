@@ -33,6 +33,7 @@ def class_page(x: dict, c: str) -> str:
     src, cs = x["source"], x["classes"][c]
     C = c.upper()
     L = ["---", "tags:", "  - FedRAMP", "  - Rules", "  - 20x", "---", "",
+         f"Generated reference · Rules {src['version']}", "{: .fr-eyebrow }", "",
          f"# Class {C} Rules and Key Security Indicators", "",
          f"This page lists the FedRAMP rules and Key Security Indicators (KSIs) that apply to a FedRAMP 20x Program "
          f"Certification at Class {C}. It is generated from the FedRAMP Consolidated Rules for 2026 dataset.", "",
@@ -40,7 +41,7 @@ def class_page(x: dict, c: str) -> str:
          f"    Generated from FedRAMP/rules commit `{(src.get('commit') or '')[:7]}`. Each ID links to the official rule on "
          "fedramp.gov, which governs.", ""]
     counts = cs["counts"]
-    L += ["## Summary", "", "| Type | Count |", "| --- | --- |", f"| Rules | {counts['rules']} |"]
+    L += ["## Summary", "", "| Type | Count |", "| --- | ---: |", f"| Rules | {counts['rules']} |"]
     L += [f"| Rules with {f} | {counts['rules_by_force'][f]} |" for f in FORCE_ORDER if f in counts["rules_by_force"]]
     L += [f"| KSIs | {counts['ksis']} ({counts['ksis_optional']} optional) |", ""]
 
@@ -105,9 +106,10 @@ def differences_page(x: dict) -> str:
     a_b = [i for i, v in rows.items() if "a" in v and v.get("b", "Not listed") != v["a"]]
     not_a = sorted(i for i, v in rows.items() if "a" not in v and ("b" in v or "c" in v))
     L = ["---", "tags:", "  - FedRAMP", "  - Rules", "  - 20x", "---", "",
+         f"Generated reference · Rules {src['version']}", "{: .fr-eyebrow }", "",
          "# Differences by Class", "",
          "This page shows where the rules and KSIs for a FedRAMP 20x Program Certification change between Class A, B, and C. "
-         "Use it to see what a reviewer should expect more of as the class rises.", "",
+         "Use it to see how expectations change from Class A to Class C.", "",
          f'!!! info "Rules version {src["version"]} ({src["last_updated"]})"',
          "    Generated from the FedRAMP Consolidated Rules for 2026 dataset. Timeframes appear in parentheses. \"Not listed\" means the rule or KSI does not apply to that class.", "",
          "## Class B Compared With Class C", "",
@@ -115,8 +117,9 @@ def differences_page(x: dict) -> str:
          "## Class A Compared With Class B", "",
          f"{len(a_b)} rules and KSIs listed for Class A differ from Class B.", ""] + table(a_b) + ["",
          "## Not Listed for Class A", "",
-         f"{len(not_a)} rules and KSIs that apply to Class B or C are not listed for Class A: " +
-         ", ".join(f"`{i}`" for i in not_a) + ".", ""]
+         f"{len(not_a)} rules and KSIs that apply to Class B or C are not listed for Class A.", "",
+         f'??? note "Show all {len(not_a)} IDs"',
+         "    " + ", ".join(f"`{i}`" for i in not_a) + ".", ""]
     return "\n".join(L) + "\n"
 
 
