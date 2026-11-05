@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+# Never commit provider packages or review notes
+packages/
+samples-private/
+*.xlsx
+site/
+guide/reference/

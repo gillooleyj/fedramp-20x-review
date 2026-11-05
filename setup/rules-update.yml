@@ -1,0 +1,58 @@
+name: Check FedRAMP upstream updates
+
+on:
+  schedule:
+    - cron: "23 13 * * *" # daily, 13:23 UTC; FedRAMP releases rules monthly, usually in the first week
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: rules-update
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Test current data
+        run: python -m unittest discover -s tests
+
+      - name: Check FedRAMP/rules, FedRAMP/schemas, FedRAMP/2026-markdown
+        id: check
+        run: python tools/check_updates.py
+
+      - name: Test regenerated data
+        if: steps.check.outputs.changed == 'true'
+        run: python -m unittest discover -s tests
+
+      - name: Choose labels
+        id: labels
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          labels="rules-update"
+          if [ "${{ steps.check.outputs.logic_review }}" = "true" ]; then labels="$labels,needs-logic-review"; fi
+          if [ "${{ steps.check.outputs.guide_review }}" = "true" ]; then labels="$labels,needs-guide-review"; fi
+          echo "labels=$labels" >> "$GITHUB_OUTPUT"
+
+      - name: Open or update pull request
+        if: steps.check.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: upstream-update
+          title: "FedRAMP upstream update: ${{ steps.check.outputs.version }}"
+          commit-message: "Update pinned FedRAMP sources to ${{ steps.check.outputs.version }}"
+          body-path: ${{ steps.check.outputs.report }}
+          labels: ${{ steps.labels.outputs.labels }}
+          delete-branch: true
